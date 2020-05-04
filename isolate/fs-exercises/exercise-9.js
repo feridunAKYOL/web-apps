@@ -73,7 +73,7 @@ if (command === 'write') {
 			console.error(err);
 		}
 	};
-	fs.appendFile(__dirname + '/' + fileName, text, callBackappend);
+	fs.appendFile(__dirname + '/' + fileName, ' ', text, callBackappend);
 	log('4.b', '_ ' + fileName + ' ...');
 } else {
 	log('3.c', 'unknown command: ' + command);
