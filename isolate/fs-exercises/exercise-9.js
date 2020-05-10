@@ -33,63 +33,59 @@ FLAGS:
 `;
 
 // declare logging function
-const log = (logId, value) => console.log(
-  `\nlog ${logId}, ${Date.now() - START} ms. \n`,
-  value
-);
-
+const log = (logId, value) => console.log(`\nlog ${logId}, ${Date.now() - START} ms. \n`, value);
 
 // --- main script ---
 
 // fill in the _'s to reverse-engineer the behavior of exercise-9-demo.min.js
 
-if (_) {
-  _;
-  _;
+if (process.argv.includes('-h')) {
+	log(0, DOC_STRING);
+	process.exit(0);
 }
 
-const command = _;
-const fileName = _;
-const text = _;
+const command = process.argv[2];
+const fileName = process.argv[3];
+const text = process.argv[4];
 
-if (_) {
-  _;
-  _;
+if (command == null) {
+	log('1.a', 'a command is required, exiting');
+	process.exit(0);
 }
-_;
+log('1.b', 'command: ' + command);
 
-
-if (_) {
-  _;
-};
-
-
-if (_) {
-  _;
-  _;
+if (command === 'list') {
+	log('3', 'reading filenames ...');
+	const fileNames = fs.readdirSync(__dirname);
+	log('4', fileNames);
+	process.exit(0);
 }
-_;
-
-
-if (_) {
-  _;
-  _;
+if ((command == 'write' || command == 'append') && process.argv[3] == null) {
+	log('2.a', 'a file name is required, exiting');
+	process.exit(0);
 }
-_;
-
-
-if (_) {
-  _;
-  _;
-  _;
-  _;
-
-} else if (_) {
-  _;
-  _;
-  _;
-  _;
-
+log('2.b', 'fileName: ' + fileName);
+///////////////
+if (command === 'write') {
+	log('3.a', 'now it is writing');
+	const writeCallBack = (err, contents) => {
+		if (err) {
+			console.error(err);
+			return;
+		}
+		log(contents);
+	};
+	fs.writeFile(__dirname + '/' + fileName, text, writeCallBack);
+	log('4.a', 'writing text to ' + fileName + ' ...');
+} else if (command === 'append') {
+	log('3.b', 'text will be appended');
+	const callBackappend = (err) => {
+		if (err) {
+			console.error(err);
+		}
+	};
+	fs.appendFile(__dirname + '/' + fileName, ' ', text, callBackappend);
+	log('4.b', '_ ' + fileName + ' ...');
 } else {
-  _;
+	log('3.c', 'unknown command: ' + command);
 }

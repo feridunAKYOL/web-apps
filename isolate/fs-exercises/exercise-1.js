@@ -13,16 +13,13 @@ const START = Date.now();
 const FILE_PATH = __dirname + '/file.json';
 
 // declare logging function
-const log = (logId, value) => console.log(
-  `\nlog ${logId}, ${Date.now() - START} ms: ${typeof value}\n`,
-  value
-);
+const log = (logId, value) => console.log(`\nlog ${logId}, ${Date.now() - START} ms: ${typeof value}\n`, value);
 
 // --- main script ---
 
 const objectToSave = {
-  todoText: "1234",
-  completed: true
+	todoText: '1234',
+	completed: true
 };
 log(1, objectToSave);
 
@@ -33,15 +30,14 @@ log(2, stringToSave);
 log(3, 'writing file ...');
 fs.writeFileSync(FILE_PATH, stringToSave);
 
-
 const readFileCallback = (err, fileText) => {
-  if (err) {
-    log(5, err);
-    return;
-  }
+	if (err) {
+		log(5, err);
+		return;
+	}
 
-  log(5, fileText);
-  assert.strictEqual(fileText, stringToSave);
+	log(5, fileText);
+	assert.strictEqual(fileText, stringToSave);
 
   const parsedFileContents = JSON.parse(fileText);
   log(6, parsedFileContents);
@@ -53,4 +49,3 @@ const readFileCallback = (err, fileText) => {
 // async
 fs.readFile(FILE_PATH, 'utf-8', readFileCallback);
 log(4, 'reading file ...');
-
