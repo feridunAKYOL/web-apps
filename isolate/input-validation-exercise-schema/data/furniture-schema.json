@@ -1,0 +1,30 @@
+{
+  "title": "An Animal",
+  "description": "Definition of a valid animal entry",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "materials": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "type": {
+        "type": "string"
+      },
+      "second_hand": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "materials",
+      "type"
+    ]
+  }
+}

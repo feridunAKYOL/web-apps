@@ -1,0 +1,13 @@
+{
+	
+			"id": 34,
+			"habitat": "amazon",
+			"average_mass": 30,
+			"is_extinct": true,
+			"traits": {
+				"beak": true,
+				"feathers": false,
+				"fur": true
+			}
+		
+}
